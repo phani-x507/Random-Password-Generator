@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function gp() {
+        inp = parseInt(document.getElementById('inp1').value)
+        cboxes_count = 0
+        selected_stacks = []
+        if(document.getElementById('lb1').checked){
+            cboxes_count += 1
+            stack1 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+            selected_stacks = selected_stacks.concat(stack1)
+        }
+        if(document.getElementById('ub1').checked){
+            cboxes_count +=1
+            stack2 = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+            selected_stacks = selected_stacks.concat(stack2)
+        }
+        if(document.getElementById('sc1').checked){
+            cboxes_count +=1
+            stack3 = ['!', '@', '#', '$', '%', '^', '&', '*',  '|' , '/', '?'];
+            selected_stacks = selected_stacks.concat(stack3)
+        }
+        if(document.getElementById('n1').checked){
+            cboxes_count +=1
+            stack4 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+            selected_stacks = selected_stacks.concat(stack4)
+        }
+
+        // Code For Selecting Elements
+        generated_password = []
+        for(k = 0;k<inp;k++){
+            index1 = Math.floor(Math.random() * selected_stacks.length)
+            generated_password.push(selected_stacks[index1])
+        }
+        console.log(generated_password)
+        
+        
+        // Code for Selected Items
+        parts = cboxes_count
+        sub_parts = inp/parts
+        sub_parts = parseInt(sub_parts)
+        l1 = []
+        for (i = 0;i<parts-1;i++){
+            l1.push(sub_parts)
+        }
+        comb = inp - (sub_parts*(parts-1))
+        l1.push(comb)
+
+        for(i=0;i<parts.length;i++){
+            console.log(selected_stacks[i].length)
+        }
+
+
+        // for(i = 1;i<=3;i++){
+        //      for(j = 0;j<=selected_stacks[1].length;j++){
+        //         console.log(selected_stacks[i][j])
+        //      }
+        //     }
+        // Randomizing Elements
+        document.getElementById('text1').value = l1
+        document.getElementById('hello1').innerHTML = "The Generated Password is : <br> " + generated_password.join("") 
+        console.log(generated_password)
+
+    }
+
+
+</script>
+<style>
+    body{
+        background-color: #F6F8FA ;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .main1{
+        border: 1px solid lavender;
+        width: 300px;
+        height: 430px;
+        padding:15px;
+        margin: auto;
+        text-align: center;
+        background-color: #FEFEFE;
+        border-radius: 55px;
+        box-shadow: 0px 0px 15px 1px #F0F0F1  ;
+
+    }
+    .main1 input{
+        margin: 8px;
+    }
+    .type1{
+        height: 25px;
+        width: 70%;
+        border: 1px solid transparent ;
+        border-bottom: 2px solid coral;
+        background-color: transparent;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .b1{
+        height: 40px;
+        border: transparent;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family:'segoe ui';
+        background-color: lavender;
+    }
+</style>
+<body>
+<div class="main1">
+    <h1>Welcome</h1>
+    <input type="number" class="type1" name="" id="inp1" placeholder="Length of Password">
+    <input type="text" class="type1" name="" id="text1" disabled placeholder="Sections" ><br>
+    <div style="text-align: left;">
+    <input type="checkbox"   name="" id="lb1">lowercase<br>
+    <input type="checkbox" value ='stack2' name="" id="ub1">Uppercase<br>
+    <input type="checkbox" value ='stack3' name="" id="sc1">Special Charactors<br>
+    <input type="checkbox" value ='stack4' name="" id="n1">Numbers<br>
+    </div>
+    <br>
+    <button class="b1" onclick="gp()">Generate Password </button><br>
+    <p id="hello1">Click to Generate Password</p>
+</div>
+</body>
+
+</html>
